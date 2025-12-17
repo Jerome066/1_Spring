@@ -1,10 +1,31 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Bienvenido</title>
+    <link rel="stylesheet" th:href="@{/styles.css}">
+    <html xmlns:th="http://www.thymeleaf.org">
+
 </head>
+
 <body>
-    <h1>Welcome</h1>
+
+    <div class="welcome-container">
+        <h1 th:text="${title}"></h1>
+        <h2>[[${title}]]</h2>
+        <p>Nos alegra tenerte aquí. Explora y descubre todo lo que tenemos para ti.</p>
+        <p>Usuario</p>
+        <p>Nombre: [[${user.name}]]</p>
+        <p>Email: [[${user.email}]]</p>
+        <div th:object="${user}">
+            <p>Usuario</p>
+            <p>Nombre: [[*{name}]]</p>
+            <p>Email: [[*{email}]]</p>
+        </div>
+        <button>Comenzar</button>
+    </div>
+
 </body>
+
 </html>
