@@ -15,7 +15,7 @@ import com.spring1basic.practica1.model.User;
 public class WelcomeController {
     @GetMapping // muestra la vista
     // @ResponseBody // Regresa la cadena
-    public String welcome(Model model) {
+    public String welcome(Model model) { // Model nos permite pasar la informacion a nuestra vista 
         model.addAttribute("title", "Welcome to my page");
         model.addAttribute("user", new User("Emma", "emma@gmail.com"));
 
