@@ -47,3 +47,10 @@ body {
 .welcome-container button:hover {
     background-color: #00c6fb;
 }
+
+.text-blue{
+    background-color: rgb(220, 220, 255);
+}
+.text-green{
+    background-color: rgb(224, 250, 224);
+}

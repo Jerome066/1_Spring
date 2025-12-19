@@ -17,9 +17,17 @@ public class WelcomeController {
     // @ResponseBody // Regresa la cadena
     public String welcome(Model model) { // Model nos permite pasar la informacion a nuestra vista 
         model.addAttribute("title", "Welcome to my page");
-        model.addAttribute("user", new User("Emma", "emma@gmail.com"));
+        
+        User user1 = new User("Emma", "emma@gmail.com");
+        User user2 = new User("Manuel", "manuel@gmail.com");
+        User user3 = new User("Pame", "pame@gmail.com");
 
-        return "Welcome";
+        //List<User> users = List.of(user1,user2,user3);
+        List<User> users = List.of();// si no hay usuarios
+
+        model.addAttribute("users", users); 
+
+        return "welcome";
     }
 
     /*
