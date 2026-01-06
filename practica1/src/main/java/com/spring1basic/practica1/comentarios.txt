@@ -1,0 +1,28 @@
+welcome.html
+<!--/* <body>
+        <div class="welcome-container">
+            <h1 th:text="${title}"></h1>
+            <h2>[[${title}]]</h2>
+            <p>Nos alegra tenerte aquí. Explora y descubre todo lo que tenemos para ti.</p>
+            <p>Usuario</p>
+            <p>Nombre: [[${user.name}]]</p>
+            <p>Email: [[${user.email}]]</p>
+            <div th:object="${user}">
+                <p>Usuario</p>
+                <p>Nombre: [[*{name}]]</p>
+                <p>Email: [[*{email}]]</p>
+            </div> <button>Comenzar</button>
+        </div> */-->
+
+<!--/* <div class="welcome-container">
+            <p th:unless="${users.size()} == 0"> Lista de usuarios:</p> en caso de que la lista esta no este vacia
+            <ul>
+                <li th:each="user, loop : ${users}" th:class="${loop.odd} ? 'text-blue' : 'text-green'">
+                    <p>Usuario: # [[${loop.index}+1]]</p>
+                    <p>Nombre: [[${user.name}]]</p>
+                    <p>Email: [[${user.email}]]</p>
+                </li>
+                <li th:if="${users.size()} == 0">No hay usuarios disponibles</li> Tamaño del arreglo = 0
+                <li th:if="${#lists.isEmpty(users)}">No hay usuarios disponibles</li> Si la lista esta vacia
+            </ul>
+        </div>*/ -->
