@@ -26,3 +26,6 @@ welcome.html
                 <li th:if="${#lists.isEmpty(users)}">No hay usuarios disponibles</li> Si la lista esta vacia
             </ul>
         </div>*/ -->
+
+
+Se puede crear una carpeta "fragments" dentro de templates, se puede varias los archivos para tener diferentes "footers" , etc.

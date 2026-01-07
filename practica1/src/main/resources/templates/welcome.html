@@ -9,24 +9,24 @@
 </head>
 
 <body>
-    <div class="welcome-container">
-        <p th:unless="${users.size()} == 0"> Lista de usuarios:</p> <!-- en caso de que la lista esta no este vacia -->
-        <ul>
-            <li th:each="user, loop : ${users}" th:class="${loop.odd} ? 'text-blue' : 'text-green'">
-                <p>Usuario: # [[${loop.index}+1]]</p>
-                <p>Nombre: [[${user.name}]]</p>
-                <p>Email: [[${user.email}]]</p>
-            </li>
-            <li th:if="${users.size()} == 0">No hay usuarios disponibles</li><!-- Tamaño del arreglo = 0  -->
-            <li th:if="${#lists.isEmpty(users)}">No hay usuarios disponibles</li><!-- Si la lista esta vacia  -->
-        </ul>
-    </div>
+
+    <main layout:fragment="content">
+        <div class="welcome-container">
+            <p th:unless="${users.size()} == 0"> Lista de usuarios:</p>
+            <!-- en caso de que la lista esta no este vacia -->
+            <ul>
+                <li th:each="user, loop : ${users}" th:class="${loop.odd} ? 'text-blue' : 'text-green'">
+                    <p>Usuario: # [[${loop.index}+1]]</p>
+                    <p>Nombre: [[${user.name}]]</p>
+                    <p>Email: [[${user.email}]]</p>
+                </li>
+                <li th:if="${users.size()} == 0">No hay usuarios disponibles</li><!-- Tamaño del arreglo = 0  -->
+                <li th:if="${#lists.isEmpty(users)}">No hay usuarios disponibles</li><!-- Si la lista esta vacia  -->
+            </ul>
+        </div>
+    </main>
 
 </body>
 
 
 </html>
-
-
-
-

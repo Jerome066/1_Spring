@@ -22,8 +22,8 @@ public class WelcomeController {
         User user2 = new User("Manuel", "manuel@gmail.com");
         User user3 = new User("Pame", "pame@gmail.com");
 
-        //List<User> users = List.of(user1,user2,user3);
-        List<User> users = List.of();// si no hay usuarios
+        List<User> users = List.of(user1,user2,user3);
+        //List<User> users = List.of();// si no hay usuarios
 
         model.addAttribute("users", users); 
 
