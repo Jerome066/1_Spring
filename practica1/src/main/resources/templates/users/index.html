@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorate="~{layouts/app}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de usuarios</title>
+</head>
+
+<body>
+
+    <main layout:fragment="content">
+        <div class="welcome-container">
+            <p th:unless="${users.size()} == 0"> Lista de usuarios:</p>
+            <!-- en caso de que la lista esta no este vacia -->
+            <ul>
+                <li th:each="user, loop : ${users}" th:class="${loop.odd} ? 'text-blue' : 'text-green'" th:object="${user}">
+                    
+                    <p>Usuario: # [[${user.id}]]</p>
+                    <p>Nombre: [[${user.name}]]</p>
+                    <p>Email: [[${user.email}]]</p>
+                    <a th:href="@{/users/{id}(id=${user.id})}" class="btn btn-primary">ver</a>
+                    <!--/* Tambien se puede con [[*{id}]] */-->
+                </li>
+                <li th:if="${users.size()} == 0">No hay usuarios disponibles</li><!-- Tamaño del arreglo = 0  -->
+                <li th:if="${#lists.isEmpty(users)}">No hay usuarios disponibles</li><!-- Si la lista esta vacia  -->
+            </ul>
+        </div>
+    </main>
+
+</body>
+
+
+</html>

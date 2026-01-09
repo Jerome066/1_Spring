@@ -4,10 +4,12 @@ public class User {
     
     private String name;
     private String email;
+    private Long id;
     
-    public User(String name, String email) {
+    public User(String name, String email, Long id) {
         this.name = name;
         this.email = email;
+        this.id = id;
     }
 
     public String getName() {
@@ -24,6 +26,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     

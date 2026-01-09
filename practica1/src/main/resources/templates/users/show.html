@@ -4,13 +4,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <title>Detalles de usuario</title>
 </head>
 
 <body>
 
     <main layout:fragment="content">
-        <h1>Bienvenido a mi página</h1>
+        <h1>Detalles del usuario</h1>
+
+        <div th:object="${user}">
+            <p>Usuario: # [[${id}]]</p>
+            <p>Nombre: [[${name}]]</p>
+            <p>Email: [[${email}]]</p>
+        </div>
     </main>
 
 </body>
