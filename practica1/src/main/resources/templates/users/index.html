@@ -13,6 +13,7 @@
         <div class="welcome-container">
             <p th:unless="${users.size()} == 0"> Lista de usuarios:</p>
             <!-- en caso de que la lista esta no este vacia -->
+             <a th:href="@{/users/create}" class="btn btn-success">Crear nuevo usuario</a>
             <ul>
                 <li th:each="user, loop : ${users}" th:class="${loop.odd} ? 'text-blue' : 'text-green'" th:object="${user}">
                     

@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring1basic.practica1.model.User;
 import org.springframework.ui.Model;
@@ -30,5 +32,15 @@ public class UserController {
 
 
         return "users/show";
+    }
+
+    @GetMapping("/users/create")
+    public String create() {
+        return "users/create";
+    }
+    @PostMapping("/users")
+    @ResponseBody
+    public String store(String name, String email) {
+        return "Hola" + name + " tu email es: " + email;
     }
 }
