@@ -1,20 +1,15 @@
-package com.spring1basic.practica1.model;
+package com.spring1basic.practica1.dto;
 
-
-public class User {
-
+public class UserDto {
     private String name;
     private String email;
-    private Long id;
 
-    public User() {
-
+    public UserDto() {
     }
 
-    public User(String name, String email, Long id) {
+    public UserDto(String name, String email) {
         this.name = name;
         this.email = email;
-        this.id = id;
     }
 
     public String getName() {
@@ -32,13 +27,4 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 }

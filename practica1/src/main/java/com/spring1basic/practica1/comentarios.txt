@@ -32,4 +32,4 @@ Se puede crear una carpeta "fragments" dentro de templates, se puede varias los 
 
 
 
-3rdq3rf
+Los modelos pueden representar una base de datos se usan los DTO

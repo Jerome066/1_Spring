@@ -4,12 +4,16 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring1basic.practica1.dto.UserDto;
 import com.spring1basic.practica1.model.User;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 
 @Controller
@@ -38,9 +42,17 @@ public class UserController {
     public String create() {
         return "users/create";
     }
+    // @PostMapping("/users")
+    // @ResponseBody
+    // public User store(@ModelAttribute User user) { //@ModelAttribute hace el mapeo automatico de los datos del formulario a el objeto user
+    //     return user;
+    // }
+
     @PostMapping("/users")
     @ResponseBody
-    public String store(String name, String email) {
-        return "Hola" + name + " tu email es: " + email;
+    public UserDto store(@ModelAttribute UserDto userDTO) {
+
+        return userDTO;
     }
+    
 }
