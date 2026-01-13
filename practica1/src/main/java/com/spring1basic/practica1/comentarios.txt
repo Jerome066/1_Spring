@@ -29,3 +29,7 @@ welcome.html
 
 
 Se puede crear una carpeta "fragments" dentro de templates, se puede varias los archivos para tener diferentes "footers" , etc.
+
+
+
+3rdq3rf
