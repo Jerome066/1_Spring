@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring1basic.practica1.dto.UserDto;
 import com.spring1basic.practica1.model.User;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class UserController {
@@ -46,7 +49,8 @@ public class UserController {
     }
 
     @GetMapping("/users/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("userDTO", new UserDto());
         return "users/create";
     }
     // @PostMapping("/users")
@@ -57,10 +61,16 @@ public class UserController {
     // }
 
     @PostMapping("/users")
-    @ResponseBody
-    public UserDto store(@ModelAttribute UserDto userDTO) {
-
-        return userDTO;
+    // @ResponseBody
+    public String store(@Valid @ModelAttribute UserDto userDTO,  //@Valid valida los datos del formulario segun las anotaciones en UserDto
+        BindingResult result, // BindingResult contiene los resultados de la validacion
+        Model model) { 
+        
+        if (result.hasErrors()){
+            model.addAttribute("userDTO", userDTO);
+            return "users/create";
+        }
+        return "redirect:/users"; // redirige a la ruta /users
     }
 
 }
