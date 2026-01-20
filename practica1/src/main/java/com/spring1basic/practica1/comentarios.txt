@@ -33,3 +33,5 @@ Se puede crear una carpeta "fragments" dentro de templates, se puede varias los 
 
 
 Los modelos pueden representar una base de datos se usan los DTO
+
+th:field guardara el valor del formulario

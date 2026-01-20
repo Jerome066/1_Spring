@@ -23,12 +23,12 @@
             <div class="card-body">
                 <div class="mb-3">
                     <label class="form-label">Nombre</label>
-                    <input type="text" name="name" class="form-control"  th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}">
+                    <input type="text" name="name" th:value="*{name}"  class="form-control"  th:classappend="${#fields.hasErrors('name') ? 'is-invalid' : ''}">
                     <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input type="text" name="email" class="form-control" th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}">
+                    <input type="text" name="email" th:field="*{email}" class="form-control" th:classappend="${#fields.hasErrors('email') ? 'is-invalid' : ''}">
                     <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></div>
 
                 </div>
