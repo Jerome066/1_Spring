@@ -50,7 +50,7 @@ public class UserController {
 
     @GetMapping("/users/create")
     public String create(Model model) {
-        model.addAttribute("userDTO", new UserDto());
+        model.addAttribute("userDto", new UserDto());
         return "users/create";
     }
     // @PostMapping("/users")
