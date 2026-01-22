@@ -13,18 +13,28 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring1basic.practica1.dto.UserDto;
 import com.spring1basic.practica1.model.User;
+import com.spring1basic.practica1.repository.UserRepository;
 
 import jakarta.validation.Valid;
 
 @Controller
 public class UserController {
 
+    private final UserRepository userRepository;
+
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
     @GetMapping("/users")
     public String index(Model model) {
-        User user1 = User.builder().id(1L).name("Emma").email("emma@gmail.com").build();
-        User user2 = User.builder().id(2L).name("Manuel").email("manuel@gmail.com").build();
-        User user3 = User.builder().id(3L).name("Pame").email("pame@gmail.com").build();
-        List<User> users = List.of(user1, user2, user3);
+        // User user1 = User.builder().id(1L).name("Emma").email("emma@gmail.com").build();
+        // User user2 = User.builder().id(2L).name("Manuel").email("manuel@gmail.com").build();
+        // User user3 = User.builder().id(3L).name("Pame").email("pame@gmail.com").build();
+        //List<User> users = List.of(user1, user2, user3);
+
+        List<User> users = userRepository.findAll();
+
         model.addAttribute("users", users);
         return "users/index";
     }
@@ -70,6 +80,19 @@ public class UserController {
             model.addAttribute("userDTO", userDTO);
             return "users/create";
         }
+
+        // User user = new User();
+        // user.setName(userDTO.getName());
+        // user.setEmail(userDTO.getEmail());
+
+        //Patron Builder
+        User user = User.builder()
+            .name(userDTO.getName())
+            .email(userDTO.getEmail())
+            .build();
+
+        userRepository.save(user); // persiste el usuario en la base de datos / persistencia de datos
+
         return "redirect:/users"; // redirige a la ruta /users
     }
 
