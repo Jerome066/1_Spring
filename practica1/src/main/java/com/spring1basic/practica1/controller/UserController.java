@@ -16,6 +16,7 @@ import com.spring1basic.practica1.model.User;
 import com.spring1basic.practica1.repository.UserRepository;
 
 import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -28,10 +29,13 @@ public class UserController {
 
     @GetMapping("/users")
     public String index(Model model) {
-        // User user1 = User.builder().id(1L).name("Emma").email("emma@gmail.com").build();
-        // User user2 = User.builder().id(2L).name("Manuel").email("manuel@gmail.com").build();
-        // User user3 = User.builder().id(3L).name("Pame").email("pame@gmail.com").build();
-        //List<User> users = List.of(user1, user2, user3);
+        // User user1 =
+        // User.builder().id(1L).name("Emma").email("emma@gmail.com").build();
+        // User user2 =
+        // User.builder().id(2L).name("Manuel").email("manuel@gmail.com").build();
+        // User user3 =
+        // User.builder().id(3L).name("Pame").email("pame@gmail.com").build();
+        // List<User> users = List.of(user1, user2, user3);
 
         List<User> users = userRepository.findAll();
 
@@ -41,19 +45,19 @@ public class UserController {
 
     // @GetMapping("/users")
     // public String index(Model model) {
-    //     User user1 = new User("Emma", "emma@gmail.com", 1L);
-    //     User user2 = new User("Manuel", "manuel@gmail.com", 2L);
-    //     User user3 = new User("Pame", "pame@gmail.com", 3L);
-    //     List<User> users = List.of(user1, user2, user3);
-    //     model.addAttribute("users", users);
-    //     return "users/index";
+    // User user1 = new User("Emma", "emma@gmail.com", 1L);
+    // User user2 = new User("Manuel", "manuel@gmail.com", 2L);
+    // User user3 = new User("Pame", "pame@gmail.com", 3L);
+    // List<User> users = List.of(user1, user2, user3);
+    // model.addAttribute("users", users);
+    // return "users/index";
     // }
 
     @GetMapping("/users/{id}")
     public String show(Model model, @PathVariable("id") Long id) {
-        User user1 = new User(1L, "Emma", "emma@gmail.com");
-        User user2 = new User(2L,"Manuel", "manuel@gmail.com");
-        User user3 = new User(3L,"Pame", "pame@gmail.com");
+        User user1 = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("user", user1);
 
         return "users/show";
     }
@@ -70,13 +74,36 @@ public class UserController {
     // return user;
     // }
 
+    @GetMapping("/users/delete/{id}")
+    public String delete(@PathVariable("id") Long id, Model model) {
+        userRepository.deleteById(id);
+        return "redirect:/users";
+    }
+
+    @GetMapping("/users/update/{id}")
+    public String update(@PathVariable Long id, Model model) {
+
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        UserDto userDTO = new UserDto();
+        userDTO.setName(user.getName());
+        userDTO.setEmail(user.getEmail());
+
+        model.addAttribute("userDTO", userDTO);
+        model.addAttribute("userId", id);
+
+        return "users/update";
+    }
+
     @PostMapping("/users")
     // @ResponseBody
-    public String store(@Valid @ModelAttribute UserDto userDTO,  //@Valid valida los datos del formulario segun las anotaciones en UserDto
-        BindingResult result, // BindingResult contiene los resultados de la validacion
-        Model model) { 
-        
-        if (result.hasErrors()){
+    public String store(@Valid @ModelAttribute UserDto userDTO, // @Valid valida los datos del formulario segun las
+                                                                // anotaciones en UserDto
+            BindingResult result, // BindingResult contiene los resultados de la validacion
+            Model model) {
+
+        if (result.hasErrors()) {
             model.addAttribute("userDTO", userDTO);
             return "users/create";
         }
@@ -85,11 +112,11 @@ public class UserController {
         // user.setName(userDTO.getName());
         // user.setEmail(userDTO.getEmail());
 
-        //Patron Builder
+        // Patron Builder
         User user = User.builder()
-            .name(userDTO.getName())
-            .email(userDTO.getEmail())
-            .build();
+                .name(userDTO.getName())
+                .email(userDTO.getEmail())
+                .build();
 
         userRepository.save(user); // persiste el usuario en la base de datos / persistencia de datos
 

@@ -13,9 +13,9 @@
         <h1>Detalles del usuario</h1>
 
         <div th:object="${user}">
-            <p>Usuario: # [[${id}]]</p>
-            <p>Nombre: [[${name}]]</p>
-            <p>Email: [[${email}]]</p>
+            <p>Usuario: # [[${user.id}]]</p>
+            <p>Nombre: [[${user.name}]]</p>
+            <p>Email: [[${user.email}]]</p>
         </div>
     </main>
 

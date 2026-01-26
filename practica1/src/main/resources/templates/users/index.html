@@ -20,7 +20,9 @@
                     <p>Usuario: # [[${user.id}]]</p>
                     <p>Nombre: [[${user.name}]]</p>
                     <p>Email: [[${user.email}]]</p>
-                    <a th:href="@{/users/{id}(id=${user.id})}" class="btn btn-primary">ver</a>
+                    <a th:href="@{/users/{id}(id=${user.id})}" class="btn btn-primary">Ver</a>
+                    <a th:href="@{/users/delete/{id}(id=${user.id})}" class="btn btn-danger">Eliminar</a>
+                    <a th:href="@{/users/update/{id}(id=${user.id})}" class="btn btn-warning">Actualizar</a>
                     <!--/* Tambien se puede con [[*{id}]] */-->
                 </li>
                 <li th:if="${users.size()} == 0">No hay usuarios disponibles</li><!-- Tamaño del arreglo = 0  -->
