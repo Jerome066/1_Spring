@@ -79,9 +79,9 @@ public class UserController {
         userRepository.deleteById(id);
         return "redirect:/users";
     }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
     @GetMapping("/users/update/{id}")
-    public String update(@PathVariable Long id, Model model) {
+    public String updateForm(@PathVariable Long id, Model model) {
 
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
@@ -96,6 +96,28 @@ public class UserController {
         return "users/update";
     }
 
+    @PostMapping("/users/update/{id}")
+    public String update(@PathVariable Long id,
+            @Valid @ModelAttribute UserDto userDTO,
+            BindingResult result,
+            Model model) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("userId", id);
+            return "users/update";
+        }
+
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        user.setName(userDTO.getName());
+        user.setEmail(userDTO.getEmail());
+
+        userRepository.save(user);
+
+        return "redirect:/users";
+    }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
     @PostMapping("/users")
     // @ResponseBody
     public String store(@Valid @ModelAttribute UserDto userDTO, // @Valid valida los datos del formulario segun las

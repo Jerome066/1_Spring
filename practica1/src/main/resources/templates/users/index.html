@@ -21,7 +21,7 @@
                     <p>Nombre: [[${user.name}]]</p>
                     <p>Email: [[${user.email}]]</p>
                     <a th:href="@{/users/{id}(id=${user.id})}" class="btn btn-primary">Ver</a>
-                    <a th:href="@{/users/delete/{id}(id=${user.id})}" class="btn btn-danger">Eliminar</a>
+                    <a th:href="@{/users/delete/{id}(id=${user.id})}" class="btn btn-danger"  onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">Eliminar</a>
                     <a th:href="@{/users/update/{id}(id=${user.id})}" class="btn btn-warning">Actualizar</a>
                     <!--/* Tambien se puede con [[*{id}]] */-->
                 </li>
